@@ -1,0 +1,8 @@
+<app-header [title]="title"></app-header>
+<ion-content>
+  <app-osm
+    *ngIf="position"
+    [zoom]="6"
+    [coords]="{lon:-7.77832031, lat: 53.2734}"
+    (dataEmitted)="onEmitted($event)"></app-osm>
+</ion-content>

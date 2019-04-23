@@ -1,0 +1,21 @@
+<ion-app>
+  <ion-menu side="start" menuId="first">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Start Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item>
+          <ion-menu-button [routerLink]="['/tabs/tabone']">
+            Tab One
+          </ion-menu-button>
+        </ion-item>
+        <ion-item (click)="navTo('/tabs/tabtwo')">Tab Two</ion-item>
+        <ion-item>Tab Three</ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet main></ion-router-outlet>
+</ion-app>
