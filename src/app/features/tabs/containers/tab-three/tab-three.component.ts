@@ -12,6 +12,7 @@ const { Geolocation } = Plugins;
 export class TabThreeComponent implements OnInit {
 
   title = 'Page 3';
+  position = false;
   constructor() { }
 
   ngOnInit() {
@@ -21,6 +22,9 @@ export class TabThreeComponent implements OnInit {
   async getCurrentPosition() {
     const coordinates = await Geolocation.getCurrentPosition();
     console.log('Current', coordinates);
+    if (coordinates) {
+      this.position = true;
+    }
   }
 
   watchPosition() {
