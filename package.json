@@ -11,6 +11,7 @@
     "build:prod:nomade": "ng build --prod --deployUrl='https://ateliers.nomades.ch/~fazio/ionic4/' && cp .htaccess www/.htaccess",
     "prod": "npm run build:prod && http-server www -o",
     "pwa:dev": "http-server -p 8080 -c-1 www",
+    "deploy": "gh-pages -d www",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -53,6 +54,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~10.14.2",
     "codelyzer": "~4.5.0",
+    "gh-pages": "^2.0.1",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~3.1.4",
