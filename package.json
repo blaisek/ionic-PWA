@@ -8,10 +8,9 @@
     "start": "ng serve",
     "build": "ng build",
     "build:prod": "ng build --prod && cp .htaccess www/.htaccess",
-    "build:prod:nomade": "ng build --prod --deployUrl='https://ateliers.nomades.ch/~fazio/ionic4/' && cp .htaccess www/.htaccess",
     "prod": "npm run build:prod && http-server www -o",
     "pwa:dev": "http-server -p 8080 -c-1 www",
-    "deploy": "gh-pages -d www",
+    "deploy": "npm run build:prod && gh-pages -d www",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
