@@ -1,6 +1,13 @@
+
+<app-header title="Page 2"></app-header>
 <ion-content>
-        <app-header title="Page 2"></app-header>
-        <!-- <img [src]="image"/> -->
-        <br>
-    <ion-button (click)="takePicture()" ion-button color="primary">photo</ion-button>
+    <img *ngIf="image" [src]="image" />
+    <ion-button
+        (click)="takePicture()"
+        ion-button color="primary">
+        Take Picture
+    </ion-button>
+    <pre *ngIf="(dataMotion$|async) as data">
+        {{ data|json }}
+    </pre>
 </ion-content>
