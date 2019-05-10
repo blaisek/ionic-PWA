@@ -1,31 +1,40 @@
 import { Component, OnInit } from '@angular/core';
-
-
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 
+import { MotionWeb } from '../../../../../../plugins/motion/web/motion-web.plugin';
+import { Observable } from 'rxjs';
+const motionWeb = new MotionWeb();
 
 @Component({
   selector: 'app-tab-two',
   templateUrl: './tab-two.component.html',
   styleUrls: ['./tab-two.component.scss'],
 })
-export class TabTwoComponent {
+export class TabTwoComponent implements OnInit {
 
-  image: SafeResourceUrl;
+  public image: SafeResourceUrl;
+  public dataMotion$: Observable<any>;
 
-  constructor( private sanitizer: DomSanitizer) {
+  constructor(
+    private sanitizer: DomSanitizer
+  ) { }
+
+  ngOnInit() {
+    motionWeb.start();
+    this.dataMotion$ = motionWeb.datas;
   }
 
   async takePicture() {
     const { Camera } = Plugins;
+
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
       resultType: CameraResultType.Base64,
       source: CameraSource.Camera
     }).catch(err => err);
-    console.log('image', image );
+    console.log('--->', image);
     if (!image) {
       this.image = null;
       return;
