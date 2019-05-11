@@ -1,20 +1,21 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './services/token-interceptor/token-interceptor.service';
-import {UpdatesNotificationComponent} from './components/updates-notifications/updates-notifications.component';
+import { UpdatesNotificationComponent } from './components';
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
 
 const COMPONENTS = [
-  UpdatesNotificationComponent,
+  UpdatesNotificationComponent
 ];
-
 @NgModule({
   declarations: [
     ...COMPONENTS
   ],
   imports: [
-    HttpClientModule,
-    CommonModule
+    CommonModule,
+    IonicModule,
+    HttpClientModule
   ],
   providers: [
     {
@@ -25,7 +26,7 @@ const COMPONENTS = [
   ],
   exports: [
     ...COMPONENTS,
-    HttpClientModule,
+    HttpClientModule
   ]
 })
 export class CoreModule { }

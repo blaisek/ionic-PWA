@@ -1,6 +1,6 @@
 <app-header [title]="title"></app-header>
 <ion-content>
-  <app-osm
+  <app-osm 
     *ngIf="position"
     [zoom]="13"
     [coords]="{lon: position?.coords?.longitude, lat: position?.coords?.latitude}"

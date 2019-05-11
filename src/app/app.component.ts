@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 
 import { Platform, MenuController } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,18 +10,21 @@ import { Router } from '@angular/router';
 export class AppComponent {
   constructor(
     private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
     private _router: Router,
     private _menuCtrl: MenuController
   ) {
     this.initializeApp();
-  
   }
 
   initializeApp() {
-    this.platform.ready().then(() => {
-      this.displayToastInstall();
+    this.platform.ready().then((readySource) => {
+      // readySource info:
+      // For example, when Cordova is ready,
+      // the resolved ready source is cordova.
+      // The default ready source value will be dom.
+      // The readySource is useful if different logic should run depending on the platform the app is running from.
+      // For example, only Capacitor and Cordova can execute the status bar plugin, so the web should not run status bar plugin logic.
+      this.displayToastInstall(this.platform.platforms().toString());
     });
   }
 
@@ -32,18 +33,18 @@ export class AppComponent {
     this._router.navigate([url]);
   }
 
-  displayToastInstall(platform = null) {
-    // Detects if device is on iOS 
+  displayToastInstall(platform: string = null) {
+    // Detects if device is on iOS
     const isIos = () => {
       const userAgent = platform || window.navigator.userAgent.toLowerCase();
       return /iphone|ipad|ipod/.test( userAgent.toLowerCase() );
-    }
+    };
     // Detects if device is in standalone mode
     const isInStandaloneMode = () => ('standalone' in (window as any).navigator) && ((window as any).navigator.standalone);
     // Checks if should display install popup notification:
     if (isIos() && !isInStandaloneMode()) {
-      // this.toastCtrl.create({...});
-      console.log("update ...")
+      console.log('XXXX install....');
+      //
     }
   }
 
